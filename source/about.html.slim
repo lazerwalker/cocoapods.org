@@ -17,6 +17,7 @@ css:
   
   .dev-team .card {
       padding-top:200px;
+      height: 406px;
   }
     
   .card .background {
@@ -105,12 +106,17 @@ section.container
         col-lg-4.col-sm-4.col-xs-6.dev-team
           .card 
             .background style="background-image:url(#{dev.twitter_banner_url})"
-            
-            a href="https://twitter.com/#{dev.twitter_username}"
-              img.twitter_avatar src=dev.twitter_profile_url
-              
+
+            - if dev.twitter_username
+              a href="https://twitter.com/#{dev.twitter_username}"
+                img.twitter_avatar src=dev.avatar
+            - else
+              img.twitter_avatar src=dev.avatar
+
             h2 = dev.name
-            a href="https://twitter.com/#{dev.twitter_username}" class="twitter-follow-button" data-show-count="false" data-lang="en" = "Follow @#{dev.twitter_username}"
+
+            - if dev.twitter_username
+              a href="https://twitter.com/#{dev.twitter_username}" class="twitter-follow-button" data-show-count="false" data-lang="en" = "Follow @#{dev.twitter_username}"
 
             p = dev.cocoapods_bio
 

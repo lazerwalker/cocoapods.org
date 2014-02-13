@@ -20,8 +20,8 @@
   cocoapods_bio: "Picky about search."
 
 - name: 'Andy Myers'
-  twitter_username: 'andyrmyers'
   cocoapods_bio: "Really doing the design."
+  gravatar: f7733d89aac61dcf04b9751a91e14db0
 
 - name: 'Marin Usalj'
   twitter_username: 'mneorr'
