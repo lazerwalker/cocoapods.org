@@ -11,20 +11,11 @@ task :bootstrap do
 
   puts "Installing gems"
   `bundle install`
-
-  Bundler.with_clean_env do
-    sh "cd middleman && bundle install"
-  end
 end
 
 desc 'Start up the dynamic site'
 task :serve do
   sh "foreman start "
-end
-
-desc 'Build the static site'
-task :build do
-  sh "cd middleman && bundle exec middleman build"
 end
 
 desc "Deploy to heroku"
@@ -41,10 +32,6 @@ end
 desc "Deploy current dev database"
 task :deploy_staging_db do
   Bundler.with_clean_env do
-    sh "cd middleman && bundle exec middleman build"
-    sh "cd .."
-    sh "git add ."
-    sh "git commit -m 'build static'"
     remote_db_url = `heroku config:get DATABASE_URL --app staging-cocoapods-org`.strip
     local_db_url = "postgres://localhost/trunk_cocoapods_org_development"
     sh "heroku pg:transfer --from #{local_db_url} --to #{remote_db_url} --confirm staging-cocoapods-org"
